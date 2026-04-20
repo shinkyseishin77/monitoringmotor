@@ -1,29 +1,39 @@
-<div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <h2 style="margin-bottom: 2rem; color: #333; text-align: center;">Kirim Aduan / Laporan</h2>
+<h1 class="page-title"><span class="gradient-text">Kirim Aduan / Keluhan</span></h1>
+
+<div class="form-container-modern">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">Sampaikan kendala atau laporan Anda terkait kendaraan maupun AC. Tim kami akan segera menindaklanjutinya.</p>
+    </div>
 
     <?php if($this->session->flashdata('success')): ?>
-        <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <div class="alert-modern alert-success-modern">
             <i class="fa fa-check-circle"></i> <?= $this->session->flashdata('success') ?>
+        </div>
+    <?php endif; ?>
+    <?php if($this->session->flashdata('error')): ?>
+        <div class="alert-modern alert-danger-modern">
+            <i class="fa fa-exclamation-triangle"></i> <?= $this->session->flashdata('error') ?>
         </div>
     <?php endif; ?>
 
     <form method="POST" action="<?= base_url('publicfrontend/submit_aduan') ?>">
-        <div class="form-group">
-            <label>Nama Pelapor *</label>
-            <input type="text" name="nama_pelapor" class="form-control" required placeholder="Masukkan nama Anda">
+        <div class="form-group-modern">
+            <label class="form-label-modern"><i class="fa fa-user" style="color: var(--primary-color); margin-right: 5px;"></i> Nama Pelapor <span style="color:var(--danger)">*</span></label>
+            <input type="text" name="nama_pelapor" class="form-control-modern" required placeholder="Masukkan nama lengkap Anda">
         </div>
         
-        <div class="form-group">
-            <label>Nomor HP / WhatsApp Active *</label>
-            <input type="text" name="no_hp" class="form-control" required placeholder="08xxxxxx">
+        <div class="form-group-modern">
+            <label class="form-label-modern"><i class="fa fa-phone" style="color: var(--primary-color); margin-right: 5px;"></i> Nomor HP / WhatsApp aktif <span style="color:var(--danger)">*</span></label>
+            <input type="text" name="no_hp" class="form-control-modern" required placeholder="Contoh: 08123456789">
         </div>
         
-        <div class="form-group">
-            <label>Isi Aduan / Keluhan *</label>
-            <textarea name="isi_aduan" class="form-control" rows="5" required placeholder="Deskripsikan keluhan atau aduan mengenai motor / layanan..."></textarea>
-            <small style="color:#666;">Jelaskan dengan detail nomor polisi motor atau permasalahan yang dialami.</small>
+        <div class="form-group-modern" style="margin-bottom: 2rem;">
+            <label class="form-label-modern"><i class="fa fa-comment-dots" style="color: var(--primary-color); margin-right: 5px;"></i> Rincian Keluhan <span style="color:var(--danger)">*</span></label>
+            <textarea name="isi_aduan" class="form-control-modern" required placeholder="Tuliskan keluhan atau laporan Anda sedetail mungkin..."></textarea>
         </div>
         
-        <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem;"><i class="fa fa-paper-plane"></i> Kirim Aduan</button>
+        <button type="submit" class="btn-modern btn-primary-modern" style="width: 100%; padding: 1rem; font-size: 1.1rem; box-shadow: var(--shadow-xl);">
+            <i class="fa fa-paper-plane"></i> Kirim Aduan Sekarang
+        </button>
     </form>
 </div>

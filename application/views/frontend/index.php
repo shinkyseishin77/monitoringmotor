@@ -1,61 +1,70 @@
-<h2 style="margin-bottom: 2rem; color: #333;">Live Monitoring Motor</h2>
+<h1 class="page-title"><span class="gradient-text">Live Monitoring Motor</span></h1>
 
-<form method="GET" action="<?= base_url('monitoring-public') ?>" style="margin-bottom: 2rem; display: flex; gap: 10px;">
-    <input type="text" name="search" class="form-control" placeholder="Cari Nopol atau Merk..." value="<?= $this->input->get('search') ?>" style="max-width: 300px;">
-    <select name="status" class="form-control" style="max-width: 200px;">
-        <option value="">Semua Status</option>
-        <option value="tersedia" <?= $this->input->get('status') == 'tersedia' ? 'selected' : '' ?>>Tersedia</option>
-        <option value="digunakan" <?= $this->input->get('status') == 'digunakan' ? 'selected' : '' ?>>Digunakan</option>
-        <option value="service" <?= $this->input->get('status') == 'service' ? 'selected' : '' ?>>Service</option>
-    </select>
-    <button type="submit" class="btn-primary">Filter</button>
-</form>
+<div class="filter-bar">
+    <form method="GET" action="<?= base_url('monitoring-public') ?>" style="display: flex; gap: 1rem; width: 100%; justify-content: center; flex-wrap: wrap;">
+        <input type="text" name="search" class="modern-input" placeholder="Cari Nopol, Pemilik, atau Merk..." value="<?= $this->input->get('search') ?>">
+        <select name="status" class="modern-select">
+            <option value="">Semua Status</option>
+            <option value="tersedia" <?= $this->input->get('status') == 'tersedia' ? 'selected' : '' ?>>Tersedia</option>
+            <option value="service" <?= $this->input->get('status') == 'service' ? 'selected' : '' ?>>Service</option>
+            <option value="digunakan" <?= $this->input->get('status') == 'digunakan' ? 'selected' : '' ?>>Digunakan</option>
+        </select>
+        <button type="submit" class="btn-modern btn-primary-modern"><i class="fa fa-filter"></i> Filter</button>
+    </form>
+</div>
 
-<div class="motor-grid">
+<div class="modern-grid">
     <?php if(!empty($motors)): ?>
         <?php foreach($motors as $m): ?>
-            <div class="card">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <div class="modern-card">
+                <div class="card-header-modern">
                     <div>
-                        <h3 style="margin: 0; font-size: 1.2rem;"><?= $m->nomor_polisi ?></h3>
-                        <div style="color: #666; font-size: 0.9rem;"><?= $m->merk ?> <?= $m->tipe ?> (<?= $m->tahun ?>)</div>
+                        <h3 class="card-title-modern"><?= $m->nomor_polisi ?></h3>
+                        <p class="card-subtitle-modern"><?= $m->merk ?> <?= $m->tipe ?> (<?= $m->tahun ?>)</p>
                     </div>
-                    <div>
-                        <?php if($m->status == 'tersedia'): ?>
-                            <span class="status-badge status-tersedia">Tersedia</span>
-                        <?php elseif($m->status == 'service'): ?>
-                            <span class="status-badge status-service">Service</span>
-                        <?php else: ?>
-                            <span class="status-badge status-digunakan">Digunakan</span>
-                        <?php endif; ?>
-                    </div>
+                    <?php if($m->status == 'tersedia'): ?>
+                        <span class="pbadge pbadge-success"><i class="fa fa-check-circle" style="margin-right: 5px;"></i>Tersedia</span>
+                    <?php elseif($m->status == 'service'): ?>
+                        <span class="pbadge pbadge-warning"><i class="fa fa-wrench" style="margin-right: 5px;"></i>Service</span>
+                    <?php else: ?>
+                        <span class="pbadge pbadge-info"><i class="fa fa-road" style="margin-right: 5px;"></i>Digunakan</span>
+                    <?php endif; ?>
                 </div>
                 
-                <div style="font-size: 0.9rem; color: #444; background: #f9f9f9; padding: 10px; border-radius: 5px;">
-                    <strong style="display: block; margin-bottom: 5px;"><i class="fa fa-info-circle"></i> Keterangan (Update Backend):</strong>
-                    <?php if($m->status == 'tersedia'): ?>
-                        <div style="color: #28a745;">Motor siap digunakan. Posisi: <?= !empty($m->lokasi) ? $m->lokasi : 'Pool' ?></div>
-                    <?php elseif($m->status == 'digunakan'): ?>
-                        <div><strong>Oleh:</strong> <?= $m->digunakan_oleh ?></div>
-                        <div><strong>Tujuan:</strong> <?= $m->tujuan ?></div>
-                        <div><strong>Posisi:</strong> <?= !empty($m->lokasi) ? $m->lokasi : 'Sedang jalan' ?></div>
-                    <?php elseif($m->status == 'service'): ?>
-                        <div style="color: #dc3545;">Motor sedang dalam perbaikan / service mingguan.</div>
-                    <?php endif; ?>
-                    <div style="margin-top: 10px; font-size: 0.8rem; color: #888;">
-                        <i class="fa fa-clock"></i> Terakhir diupdate: <?= date('d M Y H:i', strtotime($m->updated_at)) ?>
+                <div class="data-block">
+                    <div class="data-row" style="margin-bottom: 5px; padding-bottom: 5px;">
+                        <span class="data-label"><i class="fa fa-user" style="width: 15px;"></i> Pemilik</span>
+                        <span class="data-value"><?= $m->nama_pemilik ?> (<?= $m->no_hp ?>)</span>
                     </div>
+                    <div class="data-row" style="margin-bottom: 5px; padding-bottom: 5px;">
+                        <span class="data-label"><i class="fa fa-map-marker-alt" style="width: 15px;"></i> Lokasi Posisi</span>
+                        <span class="data-value"><?= !empty($m->lokasi) ? htmlspecialchars($m->lokasi) : '-' ?></span>
+                    </div>
+                    <?php if($m->status == 'digunakan'): ?>
+                    <div class="data-row" style="margin-bottom: 5px; padding-bottom: 5px;">
+                        <span class="data-label"><i class="fa fa-id-badge" style="width: 15px;"></i> Pengguna</span>
+                        <span class="data-value"><?= !empty($m->digunakan_oleh) ? htmlspecialchars($m->digunakan_oleh) : '-' ?></span>
+                    </div>
+                    <div class="data-row" style="margin-bottom: 0px; padding-bottom: 0px; border-bottom: none;">
+                        <span class="data-label"><i class="fa fa-location-arrow" style="width: 15px;"></i> Tujuan</span>
+                        <span class="data-value"><?= !empty($m->tujuan) ? htmlspecialchars($m->tujuan) : '-' ?></span>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="card-footer-modern">
+                    <i class="fa-regular fa-clock"></i> Terakhir diupdate: <?= date('d M Y H:i', strtotime($m->updated_at)) ?>
                 </div>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: white; border-radius: 10px;">
-            <i class="fa-solid fa-folder-open mb-3" style="font-size: 3rem; color: #ccc;"></i>
-            <p>Tidak ada data motor.</p>
+        <div class="empty-state-modern">
+            <div class="empty-state-icon"><i class="fa-solid fa-motorcycle"></i></div>
+            <p class="empty-state-text">Tidak ada data motor ditemukan.</p>
         </div>
     <?php endif; ?>
 </div>
 
-<div style="margin-top: 2rem;">
+<div style="margin-top: 3rem; display: flex; justify-content: center;">
     <?= $pagination ?>
 </div>
