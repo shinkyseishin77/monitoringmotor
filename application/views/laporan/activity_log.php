@@ -38,25 +38,25 @@
                         <?php foreach($logs as $l): ?>
                         <tr>
                             <td><small><?= date('d M Y H:i:s', strtotime($l->created_at)) ?></small></td>
-                            <td><?= $l->nama ?></td>
-                            <td><span class="badge badge-secondary"><?= $l->module ?></span></td>
+                            <td><?= $l->user_name ?></td>
+                            <td><span class="badge badge-secondary"><?= $l->modul ?></span></td>
                             <td>
                                 <?php
                                 $badge = 'secondary';
-                                if($l->action == 'login') $badge = 'primary';
-                                if($l->action == 'logout') $badge = 'warning';
-                                if($l->action == 'create') $badge = 'success';
-                                if($l->action == 'update' || $l->action == 'update_status') $badge = 'info';
-                                if($l->action == 'delete') $badge = 'danger';
+                                if($l->aksi == 'login') $badge = 'primary';
+                                if($l->aksi == 'logout') $badge = 'warning';
+                                if($l->aksi == 'create') $badge = 'success';
+                                if($l->aksi == 'update' || $l->aksi == 'update_status') $badge = 'info';
+                                if($l->aksi == 'delete') $badge = 'danger';
                                 ?>
-                                <span class="badge badge-<?= $badge ?>"><?= $l->action ?></span>
+                                <span class="badge badge-<?= $badge ?>"><?= $l->aksi ?></span>
                             </td>
-                            <td><small><?= $l->ip_address ?></small><br><small class="text-muted" style="font-size:0.7rem; max-width:150px; display:inline-block; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;" title="<?= $l->user_agent ?>"><?= $l->user_agent ?></small></td>
+                            <td><small>-</small></td>
                             <td>
-                                <?php if($l->old_data || $l->new_data): ?>
+                                <?php if($l->data_lama || $l->data_baru): ?>
                                     <button class="btn btn-sm btn-secondary" onclick="viewDetail(<?= htmlspecialchars(json_encode([
-                                        'old' => json_decode($l->old_data),
-                                        'new' => json_decode($l->new_data)
+                                        'old' => json_decode($l->data_lama),
+                                        'new' => json_decode($l->data_baru)
                                     ])) ?>)"><i class="fa-solid fa-code"></i> Data</button>
                                 <?php else: ?>
                                     -

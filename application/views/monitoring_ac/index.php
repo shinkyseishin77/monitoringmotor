@@ -67,7 +67,7 @@
                                 <a href="<?= base_url('unit_ac/detail/'.$a->id) ?>" class="btn btn-sm btn-info" style="background:#17a2b8; color:#fff;" title="Riwayat AC"><i class="fa-solid fa-history"></i></a>
                                 
                                 <?php if(isset($permissions['monitoring_ac']['can_update']) || $role_id == 1): ?>
-                                    <button class="btn btn-sm btn-primary" onclick="openUpdateModal(<?= $a->id ?>, '<?= $a->nama_unit ?>', '<?= $a->status ?>')" title="Update Status Pemeriksaan"><i class="fa-solid fa-sync"></i> Update / Periksa</button>
+                                    <button class="btn btn-sm btn-primary" onclick="openUpdateModal(<?= $a->id ?>, '<?= addslashes($a->nama_unit) ?>', '<?= $a->status ?>')" title="Update Status Pemeriksaan"><i class="fa-solid fa-sync"></i> Update / Periksa</button>
                                 <?php endif; ?>
                             </td>
                         </tr>

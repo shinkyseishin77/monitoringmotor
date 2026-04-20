@@ -58,14 +58,14 @@ class MonitoringAC extends MY_Controller {
                 'updated_at' => date('Y-m-d H:i:s')
             ];
             
-            $this->UnitAC_model->update_status($id, $data);
+            $this->UnitAC_model->update($id, $data);
             
             // Log Monitoring
             $log = [
-                'unit_ac_id' => $id,
+                'ac_id' => $id,
                 'status' => $status,
-                'suhu' => $post['suhu'] ? $post['suhu'] : null,
-                'catatan' => $post['catatan'] ? $post['catatan'] : null
+                'suhu' => !empty($post['suhu']) ? $post['suhu'] : null,
+                'catatan' => !empty($post['catatan']) ? $post['catatan'] : null
             ];
             $this->UnitAC_model->insert_log($log);
             

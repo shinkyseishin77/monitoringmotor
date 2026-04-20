@@ -27,7 +27,7 @@ class LaporanMonitoring extends MY_Controller {
         } else {
             $this->db->select('log_monitoring_acs.*, unit_acs.nama_unit, unit_acs.lokasi')
                      ->from('log_monitoring_acs')
-                     ->join('unit_acs', 'unit_acs.id = log_monitoring_acs.unit_ac_id', 'left');
+                     ->join('unit_acs', 'unit_acs.id = log_monitoring_acs.ac_id', 'left');
             if ($start_date && $end_date) {
                 $this->db->where('DATE(log_monitoring_acs.created_at) >=', $start_date);
                 $this->db->where('DATE(log_monitoring_acs.created_at) <=', $end_date);

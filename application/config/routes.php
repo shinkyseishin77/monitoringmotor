@@ -110,25 +110,21 @@ $route['monitoring_ac/update_status/(:num)'] = 'MonitoringAC/update_status/$1';
 $route['monitoring_ac/riwayat/(:num)'] = 'MonitoringAC/riwayat/$1';
 
 // Laporan
-$route['riwayat']                  = 'Laporan/riwayat';
-$route['laporan_monitoring']       = 'Laporan/monitoring';
-$route['laporan_monitoring/cetak'] = 'Laporan/cetak';
-$route['activity_log']             = 'Laporan/activity_log';
+$route['riwayat']                  = 'Riwayat/index';
+$route['laporan_monitoring']       = 'LaporanMonitoring/index';
+$route['laporan_monitoring/cetak'] = 'LaporanMonitoring/cetak';
+$route['activity_log']             = 'ActivityLog/index';
 
 // Pengaturan
-$route['kelola_role']              = 'Pengaturan/role_index';
-$route['kelola_role/tambah']       = 'Pengaturan/role_tambah';
-$route['kelola_role/simpan']       = 'Pengaturan/role_simpan';
-$route['kelola_role/edit/(:num)']  = 'Pengaturan/role_edit/$1';
-$route['kelola_role/update/(:num)']= 'Pengaturan/role_update/$1';
-$route['kelola_role/hapus/(:num)'] = 'Pengaturan/role_hapus/$1';
+$route['kelola_role']              = 'Pengaturan/kelola_role';
+$route['kelola_role/simpan']       = 'Pengaturan/simpan_role';
+$route['kelola_role/update/(:num)']= 'Pengaturan/update_role/$1';
+$route['kelola_role/hapus/(:num)'] = 'Pengaturan/hapus_role/$1';
 
-$route['kelola_user']              = 'Pengaturan/user_index';
-$route['kelola_user/tambah']       = 'Pengaturan/user_tambah';
-$route['kelola_user/simpan']       = 'Pengaturan/user_simpan';
-$route['kelola_user/edit/(:num)']  = 'Pengaturan/user_edit/$1';
-$route['kelola_user/update/(:num)']= 'Pengaturan/user_update/$1';
-$route['kelola_user/hapus/(:num)'] = 'Pengaturan/user_hapus/$1';
+$route['kelola_user']              = 'Pengaturan/kelola_user';
+$route['kelola_user/simpan']       = 'Pengaturan/simpan_user';
+$route['kelola_user/update/(:num)']= 'Pengaturan/update_user/$1';
+$route['kelola_user/hapus/(:num)'] = 'Pengaturan/hapus_user/$1';
 
 // Notifikasi API
 $route['notifikasi/get']           = 'Dashboard/get_notifikasi';
