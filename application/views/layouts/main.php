@@ -73,6 +73,11 @@
                     <i class="fa-solid fa-print"></i> Laporan Monitoring
                 </a></li>
             <?php endif; ?>
+            <?php if(isset($permissions['aduan']['can_view']) || $role_id == 1): ?>
+                <li><a href="<?= base_url('aduan') ?>" class="<?= $this->uri->segment(1) == 'aduan' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-comments"></i> Kelola Aduan
+                </a></li>
+            <?php endif; ?>
             <?php if(isset($permissions['activity_log']['can_view']) || $role_id == 1): ?>
                 <li><a href="<?= base_url('activity_log') ?>" class="<?= $this->uri->segment(1) == 'activity_log' ? 'active' : '' ?>">
                     <i class="fa-solid fa-clipboard-list"></i> Log Aktivitas

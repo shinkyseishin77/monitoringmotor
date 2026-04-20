@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'auth/login';
+$route['default_controller'] = 'PublicFrontend/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -59,7 +59,7 @@ $route['auth/logout'] = 'Auth/logout';
 
 // Dashboard
 $route['dashboard']   = 'Dashboard/index';
-$route['']            = 'Auth/login';
+$route['']            = 'PublicFrontend/index';
 
 // Motor
 $route['motor']                    = 'Motor/index';
@@ -128,3 +128,15 @@ $route['kelola_user/hapus/(:num)'] = 'Pengaturan/hapus_user/$1';
 
 // Notifikasi API
 $route['notifikasi/get']           = 'Dashboard/get_notifikasi';
+
+// Frontend Public
+$route['monitoring-public'] = 'PublicFrontend/index';
+$route['monitoring-ac-public'] = 'PublicFrontend/monitoring_ac';
+$route['aduan-public'] = 'PublicFrontend/aduan';
+$route['daftar-aduan'] = 'PublicFrontend/daftar_aduan';
+$route['publicfrontend/submit_aduan'] = 'PublicFrontend/submit_aduan';
+
+// Admin Aduan
+$route['aduan'] = 'Aduan/index';
+$route['aduan/update_status/(:num)'] = 'Aduan/update_status/$1';
+$route['aduan/hapus/(:num)'] = 'Aduan/hapus/$1';
