@@ -32,6 +32,8 @@ class MY_Controller extends CI_Controller {
         $data['role_id'] = $this->role_id;
         $data['permissions'] = $this->permissions;
         
+        $data['pending_aduan_count'] = $this->db->where('status', 'pending')->count_all_results('aduan');
+        
         $data['content'] = $this->load->view($view, $data, TRUE);
         $this->load->view('layouts/main', $data);
     }

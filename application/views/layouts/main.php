@@ -125,6 +125,15 @@
 
         <!-- Page Content -->
         <div class="page-content">
+            <?php if(isset($pending_aduan_count) && $pending_aduan_count > 0): ?>
+                <div class="alert alert-danger" style="display: flex; align-items: center; justify-content: space-between; font-size: 1.1rem; padding: 1.2rem; border-left: 5px solid #dc3545; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 25px;">
+                    <div>
+                        <i class="fa-solid fa-exclamation-triangle fa-pull-left fa-2x"></i>
+                        <strong>PERHATIAN:</strong> Terdapat <strong><?= $pending_aduan_count ?></strong> pengaduan baru yang berstatus <em>Pending</em> dan belum ditangani.
+                    </div>
+                    <a href="<?= base_url('aduan') ?>" class="btn btn-danger" style="white-space: nowrap; font-weight: bold;">Cek Sekarang <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            <?php endif; ?>
             <?php if($this->session->flashdata('success')): ?>
                 <div class="alert alert-success">
                     <?= $this->session->flashdata('success') ?>
