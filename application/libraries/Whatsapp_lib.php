@@ -72,7 +72,10 @@ class Whatsapp_lib {
             return false;
         }
 
-        $waktu = date('d-m-Y H:i');
+        // Set timezone ke Jakarta khusus untuk pesan ini
+        $tz = new DateTimeZone('Asia/Jakarta');
+        $dt = new DateTime('now', $tz);
+        $waktu = $dt->format('d-m-Y H:i');
         $nama = isset($data_aduan['nama_pelapor']) ? $data_aduan['nama_pelapor'] : '-';
         $isi = isset($data_aduan['isi_aduan']) ? $data_aduan['isi_aduan'] : '-';
 
@@ -83,7 +86,8 @@ class Whatsapp_lib {
         $message .= "{$isi}\n\n";
         $message .= "🕐 *Waktu:* {$waktu}\n";
         $message .= "━━━━━━━━━━━━━━━━━━\n";
-        $message .= "_Pesan otomatis dari Sistem Monitoring_";
+        $message .= "_Pesan ini dikirim otomatis oleh Sistem Monitoring. Mohon untuk tidak membalas pesan ini._\n";
+        $message .= "_Jika ingin memproses aduan, silakan login ke website: https://motor.technomedic.id_";
 
         return $this->send_text($admin_number, $message);
     }
