@@ -29,6 +29,9 @@ class Whatsapp_lib {
             'message'   => $message
         ]);
 
+        // Jeda rand 3 hingga 10 detik per pesan
+        sleep(rand(3, 10));
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
