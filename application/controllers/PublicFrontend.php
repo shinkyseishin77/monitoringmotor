@@ -91,12 +91,21 @@ class PublicFrontend extends CI_Controller {
         if ($this->input->post()) {
             $data = [
                 'nama_pelapor' => $this->input->post('nama_pelapor'),
-                'no_hp' => $this->input->post('no_hp'),
+                'no_hp' => '-',
                 'isi_aduan' => $this->input->post('isi_aduan'),
                 'status' => 'pending'
             ];
             $this->Aduan_model->insert($data);
-            $this->session->set_flashdata('success', 'Aduan berhasil dikirim. Terima kasih.');
+
+            // Kirim notifikasi WhatsApp ke admin
+            $this->load->library('Whatsapp_lib');
+            $wa_sent = $this->whatsapp_lib->send_aduan_notification($data);
+
+            if ($wa_sent) {
+                $this->session->set_flashdata('success', 'Aduan berhasil dikirim dan notifikasi WhatsApp terkirim. Terima kasih.');
+            } else {
+                $this->session->set_flashdata('success', 'Aduan berhasil dikirim. Terima kasih.');
+            }
             redirect('aduan-public');
         } else {
             redirect('aduan-public');
